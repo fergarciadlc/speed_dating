@@ -3,12 +3,12 @@ import random
 
 
 CVS_PATH = 'users.csv'
-N_PEOPLE_BY_GROUP = 2
-N_ITERATIONS = 15
+N_PEOPLE_BY_GROUP = 3
+N_ITERATIONS = 3
 
 
 def chunker(seq, size):
-        # https://stackoverflow.com/questions/930397/getting-the-last-element-of-a-list
+        # https://stackoverflow.com/questions/434287/what-is-the-most-pythonic-way-to-iterate-over-a-list-in-chunks
         return [seq[pos:pos + size] for pos in range(0, len(seq), size)]
 
 
@@ -22,8 +22,10 @@ def generate_calls(user):
 
     if len(users) % 2 != 0:
         # not even particpants, last group of three participants
+        # TODO: Could be more general for any users and people per group
         groups[-2].append(groups[-1][0])
         groups.pop()
+
 
 
     calls = []
@@ -57,3 +59,5 @@ if __name__ == '__main__':
             f.writelines("\n".join(generate_calls(users)))
             print("\n")
             f.write("\n\n")
+
+    print("Finished!")
