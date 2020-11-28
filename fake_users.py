@@ -14,21 +14,20 @@ for r in range(NUMBER_OF_USERS):
     user = {
         "name": r["name"]["first"] + ' ' +  r["name"]["last"],
         "slackname": '@'+r["name"]["first"].lower(),
-        "email":  r["email"]
     }
 
     users.append(user)
 
 csv_file = 'users.csv'
-csv_columns = ["name", "slackname", "email"]
+csv_columns = ["name", "slackname"]
 
 for u in users:
     print(u["name"])
 
 try:
     with open(csv_file, 'w') as csvfile:
-        writer = csv.DictWriter(csvfile, fieldnames=csv_columns, lineterminator='\n') 
-        writer.writeheader() 
+        writer = csv.DictWriter(csvfile, fieldnames=csv_columns, lineterminator='\n')
+        writer.writeheader()
         writer.writerows(users)
 except IOError:
     print("I/O error")
